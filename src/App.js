@@ -1,24 +1,49 @@
 import logo from './logo.svg';
 import './App.css';
-
+import Navbar from './component/Navbar';
+import Hero from './component/Hero';
+import Services from './component/Services';
+import Work from './component/Work';
+import Project from './component/Project';
+import Review from './component/Review';
+import Contact from './component/Contact';
+import {motion, useScroll, useSpring} from "framer-motion"
+import Footer from './component/footer';
+import BackToTopButton from './component/Top';
 function App() {
-  return (
+
+        // alert("For a better experience, please view in laptop or PC !  ")
+
+  const transition = {
+    duration: 1,
+    type: "spring",
+  };
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+  
+  return (<>
+        <motion.div className="progress-bar" style={{ scaleX }} />
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+
+
+
+            <Navbar/>
+            <Hero/>
+            <Services/>
+            <Work/>
+            <Project/>
+            {/* <Review/> */}
+            <Contact/>
+            <Footer/>
+
+            <BackToTopButton/>
     </div>
+  </>
   );
 }
 
